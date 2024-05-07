@@ -20,7 +20,7 @@ class RollDiceService {
     handle(rollDiceCommand) {
         const dice = this.dieRepo.getDice(rollDiceCommand.diceIds);
         dice.forEach(die => die.roll());
-        console.log([0, 1, 2, 3, 4].map(x => this.dieRepo.get(x)).map(x => x.face));
+        // console.log([0, 1, 2, 3, 4].map(x => this.dieRepo.get(x)).map(x => x.face));
     }
 
 }
