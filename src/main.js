@@ -116,11 +116,27 @@ function main() {
             themId = p1.id;
         }
 
+        const playableCards = getPlayableCardsService.handle(new GetPlayableCardsQuery(playerId));
+        // display the playable cards
+        playCardsService.handle(new PlayCardCommand(cardId, usId, themId))
+        // play the cards
+
+
+
         playAbilitiesService.handle(new PlayAbilityCommand(abilityId, usId, themId, dice.map(x => x.id)))
+        // play cards that modify offense
 
         console.log(result[0]);
         console.log(p1);
         console.log(p2);
+
+        const pending = getPendingEffectsService.handle(new GetPendingEffectsCommand(playerId));
+
+        const wasAttacked = wasAttackedService.handle(new WasAttackedQuery(playerId));
+        if (wasAttacked) {
+            playDefenseService.handle(new PlayDefenseCommand(playerId));
+            // add a pending effect for the player / update it to a composite
+        }
     }
 }
 
