@@ -4,6 +4,7 @@ const Ability = require("../../Ability.js");
 const Die = require("../../Die.js");
 const Player = require("../../Player.js");
 const DiceCounter = require("../../common/DiceCounter.js");
+const AbilityType = require("../../AbilityType.js");
 
 class ThickSkinAbility extends Ability {
     /**
@@ -11,7 +12,7 @@ class ThickSkinAbility extends Ability {
      * @param {DiceCounter} diceCounter 
      */
     constructor(diceCounter) {
-        super("Thick Skin")
+        super("Thick Skin", AbilityType.DEFENSE);
         this.diceCounter = diceCounter;
     }
 
@@ -21,7 +22,7 @@ class ThickSkinAbility extends Ability {
      * @returns {boolean}
      */
     isPlayable(dice) {
-        return false;
+        return true;
     }
 
     /**
@@ -34,8 +35,11 @@ class ThickSkinAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        const numHearts = this.diceCounter.getNumHearts(dice);
-        us.health += numHearts * 2;
+        const threeDice = dice.slice(0, 3);
+        threeDice.forEach(die => die.roll());
+        const numHearts = this.diceCounter.getNumHearts(threeDice);
+        this.diceCounter.display(threeDice);
+        us.pending.heal += numHearts * 2;
     }
 
 }

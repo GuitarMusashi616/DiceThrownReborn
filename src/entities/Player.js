@@ -2,6 +2,7 @@
 
 const Ability = require("./Ability");
 const Card = require("./Card");
+const PendingEffect = require("./effect/PendingEffect");
 
 class Player {
     static numInstances = 0;
@@ -11,6 +12,7 @@ class Player {
         this.maxHealth = 100;
         this.cards = {};
         this.abilities = {};
+        this.pendingEffect = new PendingEffect();
         this.id = Player.numInstances;
         Player.numInstances++;
     }
@@ -58,6 +60,27 @@ class Player {
         if (this.curHealth > this.maxHealth) {
             this.curHealth = this.maxHealth;
         }
+    }
+
+
+    /**
+     * 
+     * @param {PendingEffect} pendingEffect 
+     */
+     set pending(pendingEffect) {
+        this.pendingEffect = pendingEffect;
+    }
+
+    /**
+     * 
+     * @returns {PendingEffect}
+     */
+    get pending() {
+        return this.pendingEffect;
+    }
+
+    resetPending() {
+        this.pendingEffect = new PendingEffect();
     }
 }
 

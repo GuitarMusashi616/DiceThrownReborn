@@ -33,16 +33,24 @@ const BlindingShotAbility = require("./entities/moonelf/abilities/BlindingShotAb
 const MissedMeAbility = require("./entities/moonelf/abilities/MissedMeAbility.js");
 const RageAbility = require("./entities/barbarian/abilities/RageAbility.js");
 const LunarEclipseAbility = require("./entities/moonelf/abilities/LunarEclipseAbility.js");
+const WasAttackedService = require("./services/WasAttackedService.js");
+const AbilityType = require("./entities/AbilityType.js");
+const WasAttackedQuery = require("./services/WasAttackedQuery.js");
+const ResolvePendingCommand = require("./services/ResolvePendingCommand.js");
+const ResolvePendingService = require("./services/ResolvePendingService.js");
 
 
 function main() {
     const dieRepo = new DieRepo();
-    const barbarianDice = new DiceCounter('🗡️', '💥', '❤️');
+    const barbarianDice = new DiceCounter('🗡️', '❤️', '💥');
     const moonElfDice = new DiceCounter('🏹', '👣', '🌙');
     const rollDiceService = new RollDiceService(dieRepo);
     const playerRepo = new PlayerRepo();
     const getAbilitiesService = new GetPlayableAbilitiesService(playerRepo, dieRepo);
     const playAbilitiesService = new PlayAbilityService(playerRepo, dieRepo);
+
+    const wasAttackedService = new WasAttackedService(playerRepo);
+    const resolvePendingService = new ResolvePendingService(playerRepo);
 
     const dice = [new Die(), new Die(), new Die(), new Die(), new Die()];
     dice.forEach(die => dieRepo.add(die));
@@ -103,7 +111,7 @@ function main() {
 
 
         // todo: make ability actually return true / false based on if it's playable
-        const result = getAbilitiesService.handle(new GetPlayableAbilitiesQuery(whoseTurn));
+        const result = getAbilitiesService.handle(new GetPlayableAbilitiesQuery(whoseTurn, AbilityType.OFFENSE));
 
         const abilityId = getIthAbilityId(result, 0)
         if (abilityId === undefined) {
@@ -116,27 +124,33 @@ function main() {
             themId = p1.id;
         }
 
-        const playableCards = getPlayableCardsService.handle(new GetPlayableCardsQuery(playerId));
+        // const playableCards = getPlayableCardsService.handle(new GetPlayableCardsQuery(playerId));
         // display the playable cards
-        playCardsService.handle(new PlayCardCommand(cardId, usId, themId))
+        // playCardsService.handle(new PlayCardCommand(cardId, usId, themId))
         // play the cards
-
 
 
         playAbilitiesService.handle(new PlayAbilityCommand(abilityId, usId, themId, dice.map(x => x.id)))
         // play cards that modify offense
 
-        console.log(result[0]);
+        console.log(result);
         console.log(p1);
         console.log(p2);
 
-        const pending = getPendingEffectsService.handle(new GetPendingEffectsCommand(playerId));
+        // const pending = getPendingEffectsService.handle(new GetPendingEffectsCommand(playerId));
 
-        const wasAttacked = wasAttackedService.handle(new WasAttackedQuery(playerId));
+        const wasAttacked = wasAttackedService.handle(new WasAttackedQuery(themId));
         if (wasAttacked) {
-            playDefenseService.handle(new PlayDefenseCommand(playerId));
+            const playableDefenses = getAbilitiesService.handle(new GetPlayableAbilitiesQuery(themId, AbilityType.DEFENSE))
+            console.log(playableDefenses);
+            if (playableDefenses.length > 0) {
+                playAbilitiesService.handle(new PlayAbilityCommand(playableDefenses[0].id, themId, usId, dice.map(x => x.id)))
+            }
+
+            // playDefenseService.handle(new PlayDefenseCommand(playerId, playableDefenses[0].id));
             // add a pending effect for the player / update it to a composite
         }
+        resolvePendingService.handle(new ResolvePendingCommand(usId, themId));
     }
 }
 

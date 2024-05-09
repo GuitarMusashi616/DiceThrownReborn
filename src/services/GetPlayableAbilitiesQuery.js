@@ -4,10 +4,12 @@ class GetPlayableAbilitiesQuery {
     /**
      * 
      * @param {number} playerId 
+     * @param {number} abilityType 
      */
-    constructor(playerId) {
+    constructor(playerId, abilityType) {
         /** @type {number} */
         this.playerId = playerId;
+        this.abilityType = abilityType
     }
 }
 

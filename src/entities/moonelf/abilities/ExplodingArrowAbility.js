@@ -4,6 +4,7 @@ const Ability = require("../../Ability.js");
 const Die = require("../../Die.js");
 const Player = require("../../Player.js");
 const DiceCounter = require("../../common/DiceCounter.js");
+const AbilityType = require("../../AbilityType.js");
 
 class ExplodingArrowAbility extends Ability {
     /**
@@ -11,7 +12,7 @@ class ExplodingArrowAbility extends Ability {
      * @param {DiceCounter} diceCounter 
      */
     constructor(diceCounter) {
-        super("Exploding Arrow")
+        super("Exploding Arrow", AbilityType.OFFENSE);
         this.diceCounter = diceCounter;
     }
 
@@ -36,7 +37,7 @@ class ExplodingArrowAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.health -= 8;
+        them.pending.damage += 8;
     }
 
 }

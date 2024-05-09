@@ -1,6 +1,7 @@
 // @ts-check
 
 const Die = require("./Die");
+const PendingEffect = require("./effect/PendingEffect");
 const Player = require("./Player");
 
 class Ability {
@@ -9,11 +10,17 @@ class Ability {
     /**
      * 
      * @param {string} name 
+     * @param {number} type
      */
-    constructor(name) {
+    constructor(name, type) {
         this.name = name;
+        this.type = type;
         this.id = Ability.numInstances;
         Ability.numInstances++;
+    }
+
+    getType() {
+        return this.type;
     }
 
     /**

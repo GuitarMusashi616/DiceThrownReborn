@@ -24,7 +24,7 @@ class GetPlayableAbilitiesService {
         const dice = this.dieRepo.getDice([0, 1, 2, 3, 4])
         const abilities = Object.values(player.abilities);
 
-        const playableAbilities = abilities.filter(x => x.isPlayable(dice));
+        const playableAbilities = abilities.filter(x => x.getType() === command.abilityType && x.isPlayable(dice));
 
         return playableAbilities;
     }
