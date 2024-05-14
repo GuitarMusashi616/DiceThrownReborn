@@ -2,16 +2,23 @@
 
 const Ability = require("./Ability");
 const Card = require("./Card");
+const Die = require("./Die");
+const DiceCounter = require("./common/DiceCounter");
 const PendingEffect = require("./effect/PendingEffect");
 
 class Player {
     static numInstances = 0;
 
-    constructor() {
+    /**
+     * 
+     * @param {DiceCounter} diceCounter 
+     */
+    constructor(diceCounter) {
         this.curHealth = 100;
         this.maxHealth = 100;
         this.cards = {};
         this.abilities = {};
+        this.diceCounter = diceCounter;
         this.pendingEffect = new PendingEffect();
         this.id = Player.numInstances;
         Player.numInstances++;
@@ -62,6 +69,13 @@ class Player {
         }
     }
 
+    /**
+     * 
+     * @param {Die[]} dice 
+     */
+    display(dice) {
+        this.diceCounter.display(dice);
+    }
 
     /**
      * 

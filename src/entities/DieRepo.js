@@ -33,6 +33,14 @@ class DieRepo {
     getDice(ids) {
         return ids.map(id => this.get(id))
     }
+
+    /**
+     * 
+     * @returns {Die[]}
+     */
+    getAll() {
+        return Object.values(this.dice)
+    }
 }
 
 module.exports = DieRepo;

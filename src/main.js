@@ -55,7 +55,7 @@ function main() {
     const dice = [new Die(), new Die(), new Die(), new Die(), new Die()];
     dice.forEach(die => dieRepo.add(die));
 
-    const p1 = new Player();
+    const p1 = new Player(barbarianDice);
     p1.addAbility(new SmackAbility(barbarianDice));
     p1.addAbility(new SturdyBlowAbility(barbarianDice));
     p1.addAbility(new FortitudeAbility(barbarianDice));
@@ -66,7 +66,7 @@ function main() {
     p1.addAbility(new ThickSkinAbility(barbarianDice));
     p1.addAbility(new RageAbility(barbarianDice));
 
-    const p2 = new Player();
+    const p2 = new Player(moonElfDice);
     p2.addAbility(new LongbowAbility(moonElfDice));
     p2.addAbility(new DemisingShotAbility(moonElfDice));
     p2.addAbility(new CoveredShotAbility(moonElfDice));
