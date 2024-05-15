@@ -24,6 +24,14 @@ class PlayerRepo {
     get(id) {
         return this.players[id];
     }
+
+    /**
+     * 
+     * @returns {Player[]}
+     */
+    getAll() {
+        return Object.values(this.players);
+    }
 }
 
 module.exports = PlayerRepo;

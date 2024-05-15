@@ -11,9 +11,11 @@ class Player {
 
     /**
      * 
+     * @param {string} name 
      * @param {DiceCounter} diceCounter 
      */
-    constructor(diceCounter) {
+    constructor(name, diceCounter) {
+        this.name = name;
         this.curHealth = 100;
         this.maxHealth = 100;
         this.cards = {};
@@ -22,6 +24,22 @@ class Player {
         this.pendingEffect = new PendingEffect();
         this.id = Player.numInstances;
         Player.numInstances++;
+    }
+
+    /**
+     * 
+     * @returns {string}
+     */
+    getName() {
+        return this.name;
+    }
+
+    getCurHealth() {
+        return this.curHealth;
+    }
+
+    getMaxHealth() {
+        return this.maxHealth;
     }
 
     /**

@@ -43,10 +43,10 @@ class LongbowAbility extends Ability {
                 them.pending.damage += 4;
                 break;
             case 4:
-                them.health -= 5;
+                them.pending.damage += 5;
                 break;
             case 5:
-                them.health -= 7;
+                them.pending.damage += 7;
                 break;
         }
     }

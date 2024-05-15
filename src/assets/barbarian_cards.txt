@@ -1,0 +1,190 @@
+64x hero cards therefore 32x per side
+
+Main phase action: (only on your turn during main phase or main phase II)
+
+# concuss
+- 1 cp
+- inflict concussion on a chosen opponent
+
+# adrenaline surge
+- 0 cp
+- roll 1 die:
+- on bang (only applies once), heal 2 & inflict concussion on a chosen opponent.
+- When any other outcome, draw 1 card.
+
+# transference
+- 2 cp
+- transfer 1 status effect token from a chosen player to another chosen player.
+
+# what_status_effects
+- 2 cp
+- Remove all status effect tokens from a chosen player.
+
+# vegas_baby
+- 0 cp
+- roll 1 die:
+- gain 1/2 the value as CP (rounded up)
+
+# get_that_outa_here
+- 1 cp
+- Remove a status effect token from a chosen player.
+
+
+Roll phase action: (Only during offensive / defensive / targeting roll phase on any players turn)
+
+# get_some (Attack modifier)
+- 2 cp
+- roll 5 dice
+- add 1xswords dmg
+- inflict concussion
+
+# head_bash
+- 0 cp
+- if you successfully dealt at least 8 dmg to an opponent after their defense concluded, play this card to inflict concussion.
+
+# not_this_time
+- 1 cp
+- A chosen player prevents 6 incoming damage
+
+# twice_as_wild
+- 3 cp
+- Change the values of any 2 dice
+
+# try_try_again
+- 1 cp
+- You or a chosen teammate may re-roll up to two dice
+- (can be the same die twice in a row or two different dice).
+
+# so_wild
+- 2 cp
+- Change the value of any one die
+
+# samesies
+- 1 cp
+- Change the value of one of your dice to be identical to the value of another one of your dice
+- (That was rolled within the same phase and for the same purpose)
+
+# one_more_time
+- 1 cp
+- A chosen player may perform an additional Roll Attempt of up to five dice during their Offensive Roll Phase.
+
+# helping_hand
+- 1 cp
+- Select one of your opponent's dice and force them to re-roll it.
+
+# better_d
+- 0 cp
+- A chosen player may perform an additional Roll Attempt of up to five dice during their Defensive Roll Phase.
+
+# six-it
+- 1 cp
+- Change the value of one of your dice to a 6.
+
+
+
+
+Instant action cards: (May be played at any time)
+
+# feelin_good
+- 0 cp
+- roll 3 dice
+- heal 1 + 2 * hearts
+
+# triple_up
+- 2 cp
+- draw 3 cards
+
+# double_up
+- 1 cp
+- draw 2 cards
+
+# buh_bye
+- 2 cp
+- Remove a status effect token from a chosen player.
+
+# tip_it
+- 1 cp
+- Increase or decrease any die by the value of 1
+- (a value of 1 cannot be decreased and a value of 6 cannot be increased)
+
+# getting_paid
+- 0 cp
+- Gain 2 cp
+
+
+
+Hero Upgrades (Main phase)
+
+# thick_skin_II
+- 3 cp
+- defense roll 4
+- heal 2x hearts
+- on heart heart, you may also prevent 1 incoming status effect.
+
+# reckless_II
+- 2 cp
+- deal 20 dmg.
+- receive 5 dmg in return.
+- (return dmg only applies if at least 1 dmg was dealt successfully).
+
+# overpower_II
+- 2 cp
+- 3x sword, 2x bang
+- roll 3 dice
+- deal damage equal to total roll value
+- inflict concussion iff roll value >= 10
+- war cry 2 swords 2 hearts
+- heal 2, deal 2 undefendable damage
+
+
+# fortitude_II
+- 2 cp
+- 3 hearts: heal 5
+- 4 hearts: heal 6
+- 5 hearts: heal 7
+- on 3 of a kind(#'s), you may also remove one status effect from yourself
+
+# crit_bash_II
+- 2 cp
+- inflict stun
+- then deal 7 undefendable dmg.
+- crit smash 3x bang
+- inflict concussionn.
+- then deal 2 undefendable dmg.
+
+# mighty_blow_II
+- 2 cp
+- deal 8 undefendable dmg.
+
+# sturdy_blow_III
+- 2 cp
+- deal 6 undefendable dmg
+- sword sword bang bang
+
+# sturdy_blow_II
+- 1 cp
+- deal 5 undefendable dmg
+
+# smack_III
+- 3 cp
+- 3 swords: deal 6 dmg
+- 4 swords: deal 8 dmg
+- 5 swords: deal 10 dmg
+on 4 of a kind (#'s), this attack becomes undefendable.
+
+# smack_II
+- 2 cp
+- 3 swords: deal 5 dmg
+- 4 swords: deal 7 dmg
+- 5 swords: deal 9 dmg
+on 4 of a kind (#'s), this attack becomes undefendable.
+
+
+
+
+
+
+
+
+
+
