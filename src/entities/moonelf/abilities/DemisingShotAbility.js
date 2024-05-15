@@ -37,7 +37,7 @@ class DemisingShotAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 4;
+        them.pendingDamage += 4;
     }
 
 }

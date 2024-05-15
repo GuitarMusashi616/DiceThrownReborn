@@ -5,7 +5,7 @@ const Die = require("../../Die.js");
 const Player = require("../../Player.js");
 const DiceCounter = require("../../common/DiceCounter.js");
 const AbilityType = require("../../AbilityType.js");
-const PendingEffect = require("../../effect/PendingEffect.js");
+const PendingEffect = require("../../common/PendingEffectOld.js");
 
 class SmackAbility extends Ability {
     /**
@@ -42,15 +42,15 @@ class SmackAbility extends Ability {
         switch (numSwords) {
             case 3:
                 // them.health -= 4;
-                them.pending.damage += 4;
+                them.pendingDamage += 4;
                 break;
             case 4:
                 // them.health -= 6;
-                them.pending.damage += 6;
+                them.pendingDamage += 6;
                 break;
             case 5:
                 // them.health -= 8;
-                them.pending.damage += 8;
+                them.pendingDamage += 8;
                 break;
         }
     }

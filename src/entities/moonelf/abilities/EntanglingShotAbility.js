@@ -35,7 +35,7 @@ class EntanglingShotAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 7;
+        them.pendingDamage += 7;
     }
 
 }

@@ -38,7 +38,7 @@ class SturdyBlowAbility extends Ability {
             return;
         }
 
-        them.pending.damage += 4;
+        them.pendingDamage += 4;
     }
 
 }

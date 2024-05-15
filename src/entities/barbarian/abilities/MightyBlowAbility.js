@@ -35,7 +35,7 @@ class MightyBlowAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 9;
+        them.pendingDamage += 9;
     }
 
 }

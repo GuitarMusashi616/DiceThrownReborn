@@ -18,13 +18,15 @@ class ResolvePendingService {
      */
     handle(resolvePendingCommand) {
         const us = this.playerRepo.get(resolvePendingCommand.usId);
-        us.health += (us.pending.heal - us.pending.damage)
+        // us.health += (us.pending.heal - us.pending.damage - us.pending.undefendable)
 
         const them = this.playerRepo.get(resolvePendingCommand.themId);
-        them.health += (them.pending.heal - them.pending.damage)
+        // them.health += (them.pending.heal - them.pending.damage - us.pending.undefendable)
 
-        us.resetPending();
-        them.resetPending();
+        // us.resetPending();
+        // them.resetPending();
+        us.resolvePending();
+        them.resolvePending();
     }
 }
 

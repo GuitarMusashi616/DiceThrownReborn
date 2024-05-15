@@ -34,7 +34,7 @@ class DisplayPlayersService {
     show(player) {
         console.log(player.getName());
         console.log(player.getCurHealth() + " / " + player.getMaxHealth())
-        console.log(player.pending);
+        player.displayPending();
         console.log();
     }
 }

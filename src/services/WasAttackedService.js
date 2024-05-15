@@ -19,7 +19,7 @@ class WasAttackedService {
      */
     handle(wasAttackedQuery) {
         const player = this.playerRepo.get(wasAttackedQuery.playerId);
-        if (player.pending.damage > 0) {
+        if (player.pendingDamage > 0) {
             return true;
         }
         return false;

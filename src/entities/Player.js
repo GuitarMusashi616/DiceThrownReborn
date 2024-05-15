@@ -4,7 +4,8 @@ const Ability = require("./Ability");
 const Card = require("./Card");
 const Die = require("./Die");
 const DiceCounter = require("./common/DiceCounter");
-const PendingEffect = require("./effect/PendingEffect");
+const PendingEffect = require("./common/PendingEffect");
+const StatusEffect = require("./StatusEffect");
 
 class Player {
     static numInstances = 0;
@@ -13,15 +14,17 @@ class Player {
      * 
      * @param {string} name 
      * @param {DiceCounter} diceCounter 
+     * @param {PendingEffect} pendingEffect
      */
-    constructor(name, diceCounter) {
+    constructor(name, diceCounter, pendingEffect) {
         this.name = name;
         this.curHealth = 100;
         this.maxHealth = 100;
         this.cards = {};
         this.abilities = {};
+        this.statusEffects = {};
         this.diceCounter = diceCounter;
-        this.pendingEffect = new PendingEffect();
+        this.pendingEffect = pendingEffect;
         this.id = Player.numInstances;
         Player.numInstances++;
     }
@@ -68,6 +71,23 @@ class Player {
     }
 
     /**
+     * 
+     * @param {StatusEffect} statusEffect 
+     */
+    addStatusEffect(statusEffect) {
+        this.statusEffects[statusEffect.id] = statusEffect;
+    }
+
+    /**
+     * 
+     * @param {number} statusEffectId 
+     * @returns {StatusEffect}
+     */
+    getStatusEffect(statusEffectId) {
+        return this.statusEffects[statusEffectId];
+    }
+
+    /**
      * @returns {number}
      */
     get health() {
@@ -95,24 +115,102 @@ class Player {
         this.diceCounter.display(dice);
     }
 
+    // /**
+    //  * 
+    //  * @param {PendingEffect} pendingEffect 
+    //  */
+    //  set pending(pendingEffect) {
+    //     this.pendingEffect = pendingEffect;
+    // }
+
+    // /**
+    //  * 
+    //  * @returns {PendingEffect}
+    //  */
+    // get pending() {
+    //     return this.pendingEffect;
+    // }
+
+    displayPending() {
+        console.log(this.pendingEffect);
+    }
+
+    resolvePending() {
+        this.health += (this.pendingEffect.heal - this.pendingEffect.damage - this.pendingEffect.undefendable)
+
+        this.pendingEffect.statusEffects.forEach(effect => {
+            this.statusEffects[effect.id] = effect;
+        })
+        this.pendingEffect.reset();
+    }
+
+    // resetPending() {
+    //     this.pendingEffect.reset();
+    // }
+
     /**
      * 
-     * @param {PendingEffect} pendingEffect 
+     * @param {number} dmg 
      */
-     set pending(pendingEffect) {
-        this.pendingEffect = pendingEffect;
+    set pendingDamage(dmg) {
+        this.pendingEffect.damage = dmg;
     }
 
     /**
      * 
-     * @returns {PendingEffect}
+     * @returns {number}
      */
-    get pending() {
-        return this.pendingEffect;
+    get pendingDamage() {
+        return this.pendingEffect.damage;
     }
 
-    resetPending() {
-        this.pendingEffect = new PendingEffect();
+    /**
+     * 
+     * @param {number} dmg 
+     */
+    set pendingUndefendable(dmg) {
+        this.pendingEffect.undefendable = dmg;
+    }
+
+    /**
+     * 
+     * @returns {number}
+     */
+    get pendingUndefendable() {
+        return this.pendingEffect.undefendable;
+    }
+
+
+    /**
+     * 
+     * @param {number} heal 
+     */
+    set pendingHeal(heal) {
+        this.pendingEffect.heal = heal
+    }
+
+    /**
+     * 
+     * @returns {number}
+     */
+    get pendingHeal() {
+        return this.pendingEffect.heal;
+    }
+
+    /**
+     * 
+     * @param {StatusEffect[]} value 
+     */
+    set pendingEffects(value) {
+        this.pendingEffect.statusEffects = value;
+    }
+
+    /**
+     * 
+     * @returns {StatusEffect[]}
+     */
+    get pendingEffects() {
+        return this.pendingEffect.statusEffects;
     }
 }
 

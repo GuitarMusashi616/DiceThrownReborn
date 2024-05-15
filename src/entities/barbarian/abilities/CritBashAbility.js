@@ -36,7 +36,7 @@ class CritBashAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 5;
+        them.pendingDamage += 5;
     }
 
 }

@@ -40,13 +40,13 @@ class LongbowAbility extends Ability {
         const numSwords = this.diceCounter.getNumSwords(dice);
         switch (numSwords) {
             case 3:
-                them.pending.damage += 4;
+                them.pendingDamage += 4;
                 break;
             case 4:
-                them.pending.damage += 5;
+                them.pendingDamage += 5;
                 break;
             case 5:
-                them.pending.damage += 7;
+                them.pendingDamage += 7;
                 break;
         }
     }

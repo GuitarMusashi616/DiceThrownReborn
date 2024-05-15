@@ -1,7 +1,7 @@
 // @ts-check
 
 const Die = require("./Die");
-const PendingEffect = require("./effect/PendingEffect");
+const PendingEffect = require("./common/PendingEffectOld");
 const Player = require("./Player");
 
 class Ability {

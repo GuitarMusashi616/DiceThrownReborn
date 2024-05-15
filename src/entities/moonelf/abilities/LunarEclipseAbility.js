@@ -36,7 +36,7 @@ class LunarEclipseAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 12;
+        them.pendingDamage += 12;
     }
 
 }

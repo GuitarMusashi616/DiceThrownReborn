@@ -37,10 +37,13 @@ const PlayAbilityCommand = require('../services/PlayAbilityCommand');
 const ResolvePendingCommand = require('../services/ResolvePendingCommand');
 const DisplayPlayersService = require('../services/DisplayPlayersService');
 const DisplayPlayersCommand = require('../services/DisplayPlayersCommand');
+const PendingEffect = require('../entities/common/PendingEffect');
 
 class Console {
     constructor() {
         // repos
+        this.whoseTurn = 0;
+        this.numPlayers = 2;
         this.dieRepo = new DieRepo();
         this.barbarianDice = new DiceCounter('🗡️', '❤️', '💥');
         this.moonElfDice = new DiceCounter('🏹', '👣', '🌙');
@@ -48,7 +51,7 @@ class Console {
 
         // services
         this.rollDiceService = new RollDiceService(this.dieRepo);
-        this.displayDiceService = new DisplayDiceService(this.dieRepo);
+        this.displayDiceService = new DisplayDiceService(this.dieRepo, this.playerRepo);
         this.displayPlayerService = new DisplayPlayersService(this.playerRepo);
         this.getAbilitiesService = new GetPlayableAbilitiesService(this.playerRepo, this.dieRepo);
         this.playAbilitiesService = new PlayAbilityService(this.playerRepo, this.dieRepo);
@@ -59,7 +62,7 @@ class Console {
         this.dice = [new Die(), new Die(), new Die(), new Die(), new Die()];
         this.dice.forEach(die => this.dieRepo.add(die));
 
-        this.p1 = new Player("Barbarian", this.barbarianDice);
+        this.p1 = new Player("Barbarian", this.barbarianDice, new PendingEffect());
         this.p1.addAbility(new SmackAbility(this.barbarianDice));
         this.p1.addAbility(new SturdyBlowAbility(this.barbarianDice));
         this.p1.addAbility(new FortitudeAbility(this.barbarianDice));
@@ -70,7 +73,7 @@ class Console {
         this.p1.addAbility(new ThickSkinAbility(this.barbarianDice));
         this.p1.addAbility(new RageAbility(this.barbarianDice));
 
-        this.p2 = new Player("Moon Elf", this.moonElfDice);
+        this.p2 = new Player("Moon Elf", this.moonElfDice, new PendingEffect());
         this.p2.addAbility(new LongbowAbility(this.moonElfDice));
         this.p2.addAbility(new DemisingShotAbility(this.moonElfDice));
         this.p2.addAbility(new CoveredShotAbility(this.moonElfDice));
@@ -97,7 +100,7 @@ class Console {
             const command = new RollDiceCommand(rest);
             console.log(command);
             this.rollDiceService.handle(new RollDiceCommand(rest));
-            this.displayDiceService.handle(new DisplayDiceCommand([]));
+            this.displayDiceService.handle(new DisplayDiceCommand([], this.whoseTurn));
         }
         if (tokens[0].toLowerCase() === "getabilities") {
             const rest = tokens.slice(1).map(arg => Number.parseInt(arg));
@@ -132,6 +135,7 @@ class Console {
             console.log(command);
             this.resolvePendingService.handle(command);
             this.displayPlayerService.handle(new DisplayPlayersCommand([pid, oid]));
+            this.whoseTurn = (this.whoseTurn+1)%this.numPlayers
         }
         if (tokens[0].toLowerCase() === "show") {
             const pids = this.playerRepo.getAll().map(x => x.id)

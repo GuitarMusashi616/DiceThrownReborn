@@ -37,7 +37,7 @@ class ExplodingArrowAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 8;
+        them.pendingDamage += 8;
     }
 
 }

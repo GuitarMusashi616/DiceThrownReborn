@@ -37,11 +37,11 @@ class MissedMeAbility extends Ability {
         }
         const numFeet = this.diceCounter.getNumHearts(dice);
         if (numFeet >= 2) {
-            us.pending.damage = Math.ceil(us.pending.damage / 2);
+            us.pendingDamage = Math.ceil(us.pendingDamage / 2);
         }
         const numBows = this.diceCounter.getNumSwords(dice);
         const numPairs = Math.floor(numBows / 2);
-        them.pending.damage += numPairs;
+        them.pendingDamage += numPairs;
     }
 
 }

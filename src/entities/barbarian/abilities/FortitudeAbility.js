@@ -43,10 +43,10 @@ class FortitudeAbility extends Ability {
                 us.pending.heal += 4;
                 break;
             case 4:
-                us.pending.heal += 5;
+                us.pendingHeal += 5;
                 break;
             case 5:
-                us.pending.heal += 6;
+                us.pendingHeal += 6;
                 break;
         }
     }

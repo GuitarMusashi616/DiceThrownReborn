@@ -36,10 +36,9 @@ class ThickSkinAbility extends Ability {
             return;
         }
         const threeDice = dice.slice(0, 3);
-        threeDice.forEach(die => die.roll());
         const numHearts = this.diceCounter.getNumHearts(threeDice);
         this.diceCounter.display(threeDice);
-        us.pending.heal += numHearts * 2;
+        us.pendingHeal += numHearts * 2;
     }
 
 }

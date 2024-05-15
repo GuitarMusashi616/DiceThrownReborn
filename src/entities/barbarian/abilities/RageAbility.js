@@ -36,7 +36,7 @@ class RageAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 15;
+        them.pendingDamage += 15;
     }
 
 }

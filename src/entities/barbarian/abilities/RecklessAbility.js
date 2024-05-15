@@ -35,8 +35,8 @@ class RecklessAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 15;
-        us.pending.damage += 4;
+        them.pendingDamage += 15;
+        us.pendingDamage += 4;
     }
 
 }

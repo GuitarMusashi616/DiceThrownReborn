@@ -37,7 +37,7 @@ class OverpowerAbility extends Ability {
         if (!this.isPlayable(dice)) {
             return;
         }
-        them.pending.damage += 10.5;
+        them.pendingDamage += 10.5;
     }
 
 }
