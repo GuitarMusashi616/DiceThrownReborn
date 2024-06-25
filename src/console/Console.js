@@ -103,6 +103,9 @@ class Console {
             this.displayDiceService.handle(new DisplayDiceCommand([], this.whoseTurn));
         }
         if (tokens[0].toLowerCase() === "getabilities") {
+            if (tokens.length <= 1) {
+                return
+            }
             const rest = tokens.slice(1).map(arg => Number.parseInt(arg));
             const pid = rest[0];
             let abilityType = rest[1];
@@ -116,6 +119,9 @@ class Console {
             console.log(response.map(x => [x.name, x.id]));
         }
         if (tokens[0].toLowerCase() === "playability") {
+            if (tokens.length <= 1) {
+                return
+            }
             const rest = tokens.slice(1).map(arg => Number.parseInt(arg));
             const abilityId = rest[0];
             const pid = rest[1];

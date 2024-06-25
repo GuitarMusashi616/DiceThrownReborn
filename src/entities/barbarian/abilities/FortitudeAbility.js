@@ -40,7 +40,7 @@ class FortitudeAbility extends Ability {
         const numHearts = this.diceCounter.getNumHearts(dice);
         switch (numHearts) {
             case 3:
-                us.pending.heal += 4;
+                us.pendingHeal += 4;
                 break;
             case 4:
                 us.pendingHeal += 5;
